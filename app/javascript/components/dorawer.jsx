@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// ハンバーガーメニューボタン　
 const DrawerButton = () => {
     return (
       <button type="button" class="drawer-toggle drawer-hamburger">

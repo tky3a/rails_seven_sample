@@ -5,7 +5,11 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.1",
     "autoprefixer": "^10.4.2",
+    "drawerjs": "^1.0.5",
     "esbuild": "^0.14.18",
+    "iscroll": "^5.2.0",
+    "jquery": "^2.2.4",
+    "jquery-drawer": "^3.2.2",
     "postcss": "^8.4.6",
     "tailwindcss": "^3.0.18"
   },

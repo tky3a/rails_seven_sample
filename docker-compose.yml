@@ -1,0 +1,30 @@
+version: '3'
+services:
+  app:
+    restart: always
+    build:
+      context: .
+    volumes:
+      - .:/app
+    command: ./bin/dev
+    stdin_open: true
+    tty: true
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+  db:
+    restart: always
+    image: mysql:8.0.27
+    platform: linux/amd64
+    environment:
+      MYSQL_DATABASE: rails_seven_sample_db
+      MYSQL_USER: rails_seven_user
+      MYSQL_ROOT_PASSWORD: seven_pass
+      MYSQL_PASSWORD: seven_pass
+      TZ: 'Asia/Tokyo'
+      MYSQL_ROOT_HOST: "%"
+    tty: true
+    command: mysqld --character-set-server=utf8mb4 --explicit_defaults_for_timestamp=true --default-authentication-plugin=mysql_native_password    
+    ports:
+      - 3306:3306

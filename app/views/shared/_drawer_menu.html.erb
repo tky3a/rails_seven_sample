@@ -1,0 +1,144 @@
+<div id="navArea">
+  <nav class="w-48 bg-gray-200 sm:bg-red-200 md:w-60 md:bg-yellow-200 lg:bg-green-200 xl:bg-blue-200">
+    <div class="inner">
+      <ul>
+        <li><a href="#">Text</a></li>
+        <li><a href="#">Text</a></li>
+        <li><a href="#">Text</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <Button id="drawerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </Button>
+  <div id="mask"></div>
+</div>
+
+<style>
+  /* ドロワーメニュー */
+  nav {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    bottom: 0;
+    width: 300px;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* transitionで開くアニメーションを作る（0.5秒で動くようにしている） */
+    transition: all .5s;
+    z-index: 3;
+    opacity: 0;
+  }
+
+  /* open nav */
+  .open nav {
+    left: 0;
+    opacity: 1;
+  }
+
+  /* ドロワーボタン */
+  #drawerBtn {
+    display: block;
+    position: flex;
+    width: 30px;
+    height: 30px;
+    transition: all .5s;
+  }
+
+  /* ドロワーボタンのspan全体 */
+  #drawerBtn span {
+    position: absolute;
+    left: 34px;
+    background-color: #ffffff;
+  }
+
+  /* span 1個目 */
+  #drawerBtn span:nth-child(1) {
+    top: 28px;
+    width: 30px;
+    height: 2px;
+  }
+
+  /* span 2個目 */
+  #drawerBtn span:nth-child(2) {
+    top: 35px;
+    width: 30px;
+    height: 2px;
+  }
+
+  /* span 3個目 */
+  #drawerBtn span:nth-child(3) {
+    top: 42px;
+    width: 30px;
+    height: 2px;
+  }
+
+  /* 開いた時のドロワーボタン */
+  .open #drawerBtn {
+    display: block;
+    position: absolute;
+    left: 200px;
+  }
+
+  /* 開いた時のドロワーボタンのspan全体 */
+  .open #drawerBtn span {
+    /* position: absolute; */
+    top: 0;
+    background-color: #ffffff;
+  }
+
+  /* 開いた時のspan 1個目 */
+  .open #drawerBtn span:nth-child(1) {
+    -webkit-transform: translate(-1px, 4px) rotate(-45deg);
+    background-color: #ffffff;
+    z-index: 3;
+  }
+
+  /* 開いた時のspan 2個目 */
+  .open #drawerBtn span:nth-child(2) {
+    display: none;
+  }
+
+  /* 開いた時のspan 3個目 */
+  .open #drawerBtn span:nth-child(3) {
+    -webkit-transform: translate(-1px, 4px) rotate(45deg);
+    background-color: #ffffff;
+    z-index: 3;
+  }
+
+  /* 画面サイズが767px以上の場合 */
+  @media screen and (min-width: 767px) {
+    .open #drawerBtn {
+      display: block;
+      position: absolute;
+      left: 300px;
+    }
+  }
+
+
+  /* マスク */
+  #mask {
+    display: none;
+    transition: all .5s;
+  }
+
+  /* 開いた時のマスク */
+  .open #mask {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .8;
+    z-index: 2;
+    cursor: pointer;
+  }
+</style>

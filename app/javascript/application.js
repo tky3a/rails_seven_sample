@@ -2,6 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "jquery"
-// import "drawerjs"
-// import "jquery-drawer"
-import "./components/dorawer"
+import "./common/drawer"

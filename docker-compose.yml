@@ -6,7 +6,7 @@ services:
       context: .
     volumes:
       - .:/app
-    command: ./bin/dev
+    command: sh -c "rm -f tmp/pids/server.pid && ./bin/dev"
     stdin_open: true
     tty: true
     ports:

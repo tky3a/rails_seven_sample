@@ -1,0 +1,29 @@
+{
+	"editor.defaultFormatter": "HookyQR.beautify", // フォーマッターを設定
+	"editor.formatOnSave": true, //ファイル保存時に自動フォーマット
+	"beautify.language": {
+		"js": {
+			"type": [
+				"javascript",
+				"json"
+			],
+			"filename": [
+				".jshintrc",
+				".jsbeautifyrc"
+			]
+		},
+		"css": [
+			"css",
+			"scss"
+		],
+		"html": [
+			"htm",
+			"html",
+			"erb"
+		], //"erb"を追加
+		"html.format.extraLiners": "",
+		"html.format.preserveNewLines": false,
+		"html.format.indentInnerHtml": true,
+		"html.format.wrapAttributes": "force"
+	}
+}

@@ -1,4 +1,5 @@
 class TagArticle < ApplicationRecord
-  belongs_to :tag
+  # 順番が重要
   belongs_to :article
+  belongs_to :tag
 end

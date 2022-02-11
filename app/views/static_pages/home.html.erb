@@ -1,1 +1,21 @@
-<%= render 'shared/header' %>
+<div class="w-full h-full py-4 px-4">
+    <% @articles.each do |article| %>
+    <div class="flex">
+        <Button class="bg-white flex-1">
+            <div class="px-4 py-4">
+                <p class="text-left">@<%= article.user.uid %>が<%= created_at(article.created_at) %>に投稿しました</p>
+                <p class="text-left text-2xl"><%= article.title %></p>
+                <div class="flex flex-row">
+                    <% article.tags.each do |tag| %>
+                    <div class="pr-2 hover:text-sky-300">
+                        <div class="hover:border-b hover:border-black">
+                            <%= link_to tag.name, static_pages_help_path %>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </Button>
+    </div>
+    <% end %>
+</div>

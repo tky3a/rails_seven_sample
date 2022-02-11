@@ -10,19 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_11_062631) do
+ActiveRecord::Schema.define(version: 2022_02_11_125959) do
+
+  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.string "title", limit: 30, null: false, comment: "記事タイトル"
+    t.text "text", null: false, comment: "記事内容"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "tag_articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "tag_id", null: false, comment: "タグID"
+    t.bigint "article_id", null: false, comment: "記事ID"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_tag_articles_on_article_id"
+    t.index ["tag_id"], name: "index_tag_articles_on_tag_id"
+  end
 
   create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name", null: false, comment: "タグ名"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", primary_key: "uid", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", comment: "ユーザーID", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "uid", limit: 30, null: false, comment: "ユーザー表示ID"
+    t.string "name", limit: 20, null: false, comment: "名前"
+    t.string "email", null: false, comment: "メールアドレス"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "articles", "users"
+  add_foreign_key "tag_articles", "articles"
+  add_foreign_key "tag_articles", "tags"
 end

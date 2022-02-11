@@ -1,8 +1,9 @@
 class CreateUsers < ActiveRecord::Migration[7.0]
   def change
-    create_table :users, primary_key: "uid", id: :string, comment: "ユーザーID", default: nil, force: true do |t|
-      t.string :name, null: false
-      t.string :email, null: false
+    create_table :users do |t|
+      t.string :uid, null: false, limit: 30, comment: "ユーザー表示ID"
+      t.string :name, null: false, limit: 20, comment: "名前"
+      t.string :email, null: false, limit: 255, comment: "メールアドレス"
 
       t.timestamps
     end

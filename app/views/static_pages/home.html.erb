@@ -9,7 +9,7 @@
                     <% article.tags.each do |tag| %>
                     <div class="pr-2 hover:text-sky-300">
                         <div class="hover:border-b hover:border-black">
-                            <%= link_to tag.name, static_pages_help_path %>
+                            <%= link_to tag.name, static_pages_help_path, data: {turbo: false} %>
                         </div>
                     </div>
                     <% end %>

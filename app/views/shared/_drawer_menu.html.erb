@@ -9,11 +9,11 @@
     </div>
   </nav>
 
-  <Button id="drawerBtn">
-    <span></span>
-    <span></span>
-    <span></span>
-  </Button>
+  <%= link_to "#", id: "drawerBtn", data: {turbo: false} do %>
+  <span></span>
+  <span></span>
+  <span></span>
+  <% end %>
   <div id="mask"></div>
 </div>
 

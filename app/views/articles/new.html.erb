@@ -1,0 +1,10 @@
+<%= form_with model: @article, url: articles_path, local: true do |form| %>
+<div class="flex flex-col">
+    <%= form.text_field :title, placeholder: "タイトル", class: "flex-1 py-4 border" %>
+    <%= form.text_field :name, placeholder: "タグ", class: "flex-1 py-2 border" %>
+    <%= form.text_area :text, placeholder: "内容", class: "flex-1 py-2 border"  %>
+    <div>
+        <%= form.submit class: "flex-none border bg-sky-500 hover:bg-sky-500/75" %>
+    </div>
+</div>
+<% end %>

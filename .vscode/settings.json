@@ -25,5 +25,8 @@
 		"html.format.preserveNewLines": false,
 		"html.format.indentInnerHtml": true,
 		"html.format.wrapAttributes": "force"
-	}
+	},
+	"tailwindCSS.experimental.classRegex": [
+		"tailwind\\(\"([^\")]*)"
+	],
 }

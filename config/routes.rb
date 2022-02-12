@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
-  get 'static_pages/home'
-  get 'static_pages/help'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: 'articles#index'
+  resources :articles, only: [:index, :new, :create]
+  # あとで使う
+  # namespace :articles do
+  #   resources :photos
+  # end
+  # post 'photos', to: 'photos#create'
+  # get 'photos/new', to: 'photos#new', as: 'new_photo'
+  # get 'photos/:id/edit', to: 'photos#edit', as: 'edit_photo'
+  # get 'photos/:id', to: 'photos#show', as: 'photo'
+  # patch 'photos/:id', to: 'photos#update'
+  # put 'photos/:id', to: 'photos#update'
+  # delete 'photos/:id', to: 'photos#destroy'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get 'static_pages/help'
 end

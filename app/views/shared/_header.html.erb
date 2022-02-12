@@ -5,9 +5,13 @@
       <%= render 'shared/drawer_menu' %>
     </div>
 
-    <h1 class="text-gray-400 text-3xl">SampleApp</h1>
-    <div class="flex-1 justify-end text-right">
-      <p class="text-gray-400">マイページ</p>
+
+    <h1 class="text-gray-400 text-3xl">
+      <%= link_to "SampleApp", root_path, data: {turbo: false}, class: "hover:text-gray-200" %>
+    </h1>
+    <div class="flex flex-1 flex-row justify-end text-right">
+      <p class="text-gray-400 hover:text-gray-200">マイページ</p>
+      <%= button_to "投稿", {controller: "articles", action: "new"}, {method: :get, data: { turbo: false }, class: "text-gray-400 pl-2 hover:text-gray-200" }%>
     </div>
   </div>
 </header>

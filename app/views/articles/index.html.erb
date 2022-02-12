@@ -1,6 +1,6 @@
 <div class="w-full h-full py-4 px-4">
     <% @articles.each do |article| %>
-    <div class="flex">
+    <div class="flex pb-4">
         <Button class="bg-white flex-1">
             <div class="px-4 py-4">
                 <p class="text-left">@<%= article.user.uid %>が<%= created_at(article.created_at) %>に投稿しました</p>

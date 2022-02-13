@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
   def show
     uid = params[:uid]
     user = User.find_by(uid: uid)
-    @article = user.articles.find_by(user_id: params[:id])
+    @article = user.articles.find(params[:id])
   end
 
   def new

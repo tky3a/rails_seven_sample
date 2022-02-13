@@ -46,6 +46,10 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem 'rails-i18n'
+
+gem 'redcarpet', '~> 2.3.0'  # マークダウン形式での表示
+gem 'coderay'                # シンタックスハイライト対応
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

@@ -5,6 +5,12 @@ class ArticlesController < ApplicationController
     @articles = Article.includes(:tags)
   end
 
+  def show
+    uid = params[:uid]
+    user = User.find_by(uid: uid)
+    @article = user.articles.find_by(user_id: params[:id])
+  end
+
   def new
     # 作成したArticleTagクラスのインスタンスを作成(FormObjectのクラスを参照)
     @article = ArticleTag.new

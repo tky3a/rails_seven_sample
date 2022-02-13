@@ -7,5 +7,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    # unique制約
+    add_index :users, [:uid, :email], unique: true
   end
 end

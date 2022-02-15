@@ -2,6 +2,11 @@ module ArticlesHelper
   require "redcarpet"
   require "coderay"
 
+  # 変更画面でのタグの初期値
+  def getTagNamesStr(tags)
+    tags.pluck(:name).join(' ')
+  end
+
   # マークダウン対応
   def markdown(text)
     html_render = HTMLwithCoderay.new(filter_html: true, hard_wrap: true)

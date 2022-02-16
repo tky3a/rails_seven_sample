@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   def index
     # includesで関連付けられているモデルをあらかじめ取得(パフォーマンスチューニング)
-    # left outer join
+    # left join
     @articles = Article.includes(:tags).order(updated_at: :desc)
   end
 
@@ -57,7 +57,19 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def search
+    if params[:keyword].blank?
+      @articles = @articles = Article.includes(:tags).order(updated_at: :desc)
+    else
+      # 複数条件での検索(articleに紐づいたtag名と、articleのタイトルと内容に検索ワードが存在しているものを検索)
+      @articles = Article.left_outer_joins(:tags)
+        .where(["tags.name LIKE(?) OR title LIKE(?) OR text LIKE(?)", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%"])
+        .order(updated_at: :desc)
+    end
+  end
+
   private
+
   # articleとtabを合わせたストロングパラメータ
   def article_tag_params
     params.require(:article_tag).permit(:name, :title, :text)

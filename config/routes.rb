@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   root to: 'articles#index'
-  resources :articles, only: [:index, :new, :create]
+  resources :articles, only: [:index, :new, :create] do
+    collection do
+      get 'search'
+    end
+    # ----------------- memo --------------------------------------
+    # memberを使うと　/articles/:id/search　というurlでidが使える様になる
+    # member do
+    #   get 'search'
+    # end
+    # --------------------------------------------------------------
+  end
   get '/:uid/articles/:id', to: 'articles#show', as: :article
   get '/:uid/articles/edit/:id', to: 'articles#edit', as: :edit_article
   patch '/:uid/articles/edit/:id', to: 'articles#update', as: :update_article

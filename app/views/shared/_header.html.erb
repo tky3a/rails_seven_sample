@@ -5,19 +5,31 @@
       <%= render "shared/drawer_menu" %>
     </div>
 
-    <h1 class="text-gray-400 text-3xl">
-      <%= link_to "SampleApp", root_path, data: { turbo: false }, class: "hover:text-gray-200" %>
-    </h1>
-    <div class="flex flex-1 flex-row justify-end text-right">
-      <div class="search-form-area w-72 px-2">
+    <div class="flex flex-col w-full">
+      <div class="flex flex-row flex-1">
+        <h1 class="text-gray-400 text-3xl">
+          <%= link_to "SampleApp", root_path, data: { turbo: false }, class: "hover:text-gray-200" %>
+        </h1>
+        <div class="flex flex-1 flex-row justify-end text-right">
+          <%# 画面サイズがmd以上になったら表示 %>
+          <div class="search-form-area hidden md:block md:w-72 md:px-2">
+            <%= form_with(url: search_articles_path, local: true, method: :get, turbo: false, class: "search-form flex flex-1") do |form| %>
+            <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input px-1 flex-1 h-10" %>
+            <%= form.submit "検索", class: "flex-none border bg-sky-500 hover:bg-sky-500/75 px-2 rounded-md hidden" %>
+            <% end %>
+          </div>
+          <div class="flex items-center justify-center">
+            <p class="text-gray-400 hover:text-gray-200">マイページ</p>
+            <%= button_to "投稿", { controller: "articles", action: "new" }, { method: :get, data: { turbo: false }, class: "text-gray-400 pl-2 hover:text-gray-200" } %>
+          </div>
+        </div>
+      </div>
+      <%# 画面サイズがmd以下になったら表示 %>
+      <div class="md:hidden pt-2">
         <%= form_with(url: search_articles_path, local: true, method: :get, turbo: false, class: "search-form flex flex-1") do |form| %>
         <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input px-1 flex-1 h-10" %>
         <%= form.submit "検索", class: "flex-none border bg-sky-500 hover:bg-sky-500/75 px-2 rounded-md hidden" %>
         <% end %>
-      </div>
-      <div class="flex items-center justify-center">
-        <p class="text-gray-400 hover:text-gray-200">マイページ</p>
-        <%= button_to "投稿", { controller: "articles", action: "new" }, { method: :get, data: { turbo: false }, class: "text-gray-400 pl-2 hover:text-gray-200" } %>
       </div>
     </div>
   </div>

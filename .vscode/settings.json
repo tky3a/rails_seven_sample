@@ -10,7 +10,8 @@
 	"[ruby]": {},
 	// erbファイルの設定
 	"[erb]": {
-		"editor.defaultFormatter": "HookyQR.beautify",
+		// erb formatter/beautifyで自動フォーマットする
+		"editor.defaultFormatter": "aliariff.vscode-erb-beautify",
 	},
 	// html.erbファイルの設定
 	"[html.erb]": {
@@ -47,4 +48,6 @@
 	"tailwindCSS.experimental.classRegex": [
 		"tailwind\\(\"([^\")]*)"
 	],
+	"vscode-erb-beautify.keepBlankLines": 1, // erb beautifyで許容する空白行数
+	"html.format.templating": true,
 }

@@ -17,3 +17,17 @@ docker-compose run app sh
 
 rails javascript:install:esbuild
 ```
+
+# VsCodeのプラグイン
+
+## フォーマッター
+
+### beautify
+https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify
+
+### erb beautify
+https://marketplace.visualstudio.com/items?itemName=aliariff.vscode-erb-beautify
+
+### rufo 
+https://github.com/ruby-formatter/rufo
+https://marketplace.visualstudio.com/items?itemName=jnbt.vscode-rufo

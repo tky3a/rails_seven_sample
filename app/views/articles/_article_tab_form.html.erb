@@ -1,17 +1,19 @@
 <%= form_with model: article, url: target_path, method: method, local: true, data: { turbo: false } do |form| %>
-<%# error_messages.html.erbにarticleを渡す %>
-<%= render 'shared/error_messages', model_data: article %>
+  <%# error_messages.html.erbにarticleを渡す %>
+  <%= render 'shared/error_messages', model_data: article %>
 
-<div class="flex flex-col flex-1 h-screen">
+  <div class="flex flex-col flex-1 h-screen">
     <%= form.text_field :title, placeholder: "タイトル", class: "w-full py-4 px-2 border" %>
+
     <% if method == :patch && params[:action] == "edit" %>
-    <%= form.text_field :name, placeholder: "タグ", value: getTagNamesStr(article.tags), class: "w-full py-2 px-2 border" %>
+      <%= form.text_field :name, placeholder: "タグ", value: getTagNamesStr(article.tags), class: "w-full py-2 px-2 border" %>
     <% else %>
-    <%= form.text_field :name, placeholder: "タグ", class: "w-full py-2 px-2 border" %>
+      <%= form.text_field :name, placeholder: "タグ", class: "w-full py-2 px-2 border" %>
     <% end %>
+
     <%= form.text_area :text, placeholder: "内容", class: "w-full flex-1 py-2 px-2 border" %>
     <div class="flex justify-center px-2 py-2">
-        <%= form.submit "投稿する", class: "flex-none border bg-sky-500 hover:bg-sky-500/75 w-72 py-2 px-2 rounded-md" %>
+      <%= form.submit "投稿する", class: "flex-none border bg-sky-500 hover:bg-sky-500/75 w-72 py-2 px-2 rounded-md" %>
     </div>
-</div>
+  </div>
 <% end %>

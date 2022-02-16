@@ -2,7 +2,12 @@ class ArticlesController < ApplicationController
   def index
     # includesで関連付けられているモデルをあらかじめ取得(パフォーマンスチューニング)
     # left join
-    @articles = Article.includes(:tags).order(updated_at: :desc)
+    @articles = Article.includes(:tags)
+      .page(params[:page])
+      .per(10).order(updated_at: :desc)
+
+    #kaminariのカスタムテーマ
+    # https://webdesignfacts.net/entry/css-pagenations/#gsc.tab=0
   end
 
   def show

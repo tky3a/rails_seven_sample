@@ -45,10 +45,11 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-gem 'rails-i18n'
+gem "rails-i18n"
 
-gem 'redcarpet', '~> 2.3.0'  # マークダウン形式での表示
-gem 'coderay'                # シンタックスハイライト対応
+gem "redcarpet", "~> 2.3.0"  # マークダウン形式での表示
+gem "coderay"                # シンタックスハイライト対応
+gem "kaminari"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -59,21 +60,21 @@ gem 'coderay'                # シンタックスハイライト対応
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem 'faker'
-  gem 'gimei'
+  gem "faker"
+  gem "gimei"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
-  #　er図作成用 
-  gem 'rails-erd'
-  gem 'faker'
-  gem 'gimei'
+  #　er図作成用
+  gem "rails-erd"
+  gem "faker"
+  gem "gimei"
 
-  gem 'pry-rails'
-  gem 'pry-byebug'
+  gem "pry-rails"
+  gem "pry-byebug"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

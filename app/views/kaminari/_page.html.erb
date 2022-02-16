@@ -1,0 +1,13 @@
+<%# Link showing page number
+  - available local variables
+    page:          a page object for "this" page
+    url:           url to this page
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+-%>
+<%# ページネーションの数字 %>
+<span class="page<%=  page.current? ? ' current bg-black/75 text-white' : ' bg-black hover:bg-black/75' %> px-2 border-r">
+  <%= link_to_unless page.current?, page, url, {remote: remote, rel: page.rel, class: "text-white bg-black hover:bg-black/50"} %>
+</span>

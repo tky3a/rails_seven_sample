@@ -23,37 +23,31 @@ class ArticleTag
     # バリデーションエラーの場合はfalseをreturn
     return false if invalid?
 
-    # トランザクション処理
-    ActiveRecord::Base.transaction do
-      if @article.persisted?
-        # 更新処理
-        @article.title = title
-        @article.text = text
-        tagNameArray = name.split(" ")
-        addTags(tagNameArray, @article)
-        @article.save!
-        true
-      else
-        # 新規登録処理
-        tagNameArray = name.split(" ")
-        # Articleの登録インスタンス作成
-        article = user.articles.build(title: title, text: text)
-        #Tagの登録インスタンス作成
-        tagNameArray.each do |tagName|
-          if Tag.exists?(name: tagName)
-            tag = Tag.find_by(name: tagName)
-            article.tags << tag
-          else
-            article.tags.build(name: tagName)
-          end
+    if @article.persisted?
+      # 更新処理
+      @article.title = title
+      @article.text = text
+      tagNameArray = name.split(" ")
+      addTags(tagNameArray, @article)
+      @article.save!
+      true
+    else
+      # 新規登録処理
+      tagNameArray = name.split(" ")
+      # Articleの登録インスタンス作成
+      article = user.articles.build(title: title, text: text)
+      #Tagの登録インスタンス作成
+      tagNameArray.each do |tagName|
+        if Tag.exists?(name: tagName)
+          tag = Tag.find_by(name: tagName)
+          article.tags << tag
+        else
+          article.tags.build(name: tagName)
         end
-        article.save!
-        true
       end
+      article.save!
+      true
     end
-    # 保存できなかった場合の例外処理
-  rescue ActiveRecord::RecordInvalid
-    return false
   end
 
   # タグつけ処理

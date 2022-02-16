@@ -21,12 +21,23 @@ class ArticlesController < ApplicationController
     user = User.find(1)
     # 作成したArticleTagクラスのインスタンスを作成
     @article = ArticleTag.new(params: article_tag_params)
-    # ArticleTagクラスで作成したsaveメソッドを実行
-    saveParams = @article.save(user)
-    if saveParams
-      redirect_to root_path, notice: "記事を作成しました。", turbo: false
-    else
-      p "保存失敗しました"
+    # トランザクション処理
+    begin
+      ActiveRecord::Base.transaction {
+        # ArticleTagクラスで作成したsaveメソッドを実行
+        saveParams = @article.save(user)
+        if saveParams
+          redirect_to root_path, notice: "記事を作成しました。", turbo: false
+        else
+          p "バリデーションエラーです"
+          render :new, status: :unprocessable_entity
+        end
+      }
+    rescue => e
+      # https://qiita.com/yujiG/items/3e34e2e0e7b4120b0584
+      p "例外エラー: 保存に失敗しました"
+      p e
+      @article.errors.add(:exseption, "例外エラーです")
       render :new, status: :unprocessable_entity
     end
   end
@@ -44,20 +55,33 @@ class ArticlesController < ApplicationController
     user = User.find_by(uid: params[:uid])
     current_article = Article.includes(:tags).find(params[:id])
 
-    # 作成したArticleTagクラスのインスタンスを作成
-    @article = ArticleTag.new(params: params[:article].blank? ? article_tag_params : article_params, article: current_article)
-    saveParams = @article.save(user)
-    # ArticleTagクラスで作成したsaveメソッドを実行
-    saveParams = @article.save(user)
-    if saveParams
-      redirect_to article_path(id: params[:id], uid: params[:uid]), notice: "記事を更新しました。", turbo: false
-    else
-      p "更新失敗しました"
+    # トランザクション処理
+    begin
+      ActiveRecord::Base.transaction {
+        # 作成したArticleTagクラスのインスタンスを作成
+        @article = ArticleTag.new(params: params[:article].blank? ? article_tag_params : article_params, article: current_article)
+        saveParams = @article.save(user)
+        # ArticleTagクラスで作成したsaveメソッドを実行
+        saveParams = @article.save(user)
+        if saveParams
+          redirect_to article_path(id: params[:id], uid: params[:uid]), notice: "記事を更新しました。", turbo: false
+        else
+          p "更新失敗しました"
+          render :edit, status: :unprocessable_entity
+        end
+      }
+    rescue => e
+      # https://qiita.com/yujiG/items/3e34e2e0e7b4120b0584
+      p "例外エラー: 保存に失敗しました"
+      p e
+      @article.errors.add(:exseption, "例外エラーです")
       render :edit, status: :unprocessable_entity
     end
   end
 
   def search
+    # 検索ワードを保持
+    @search_word = params[:keyword]
     if params[:keyword].blank?
       @articles = @articles = Article.includes(:tags).order(updated_at: :desc)
     else

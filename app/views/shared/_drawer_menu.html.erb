@@ -1,5 +1,5 @@
 <div id="navArea">
-  <nav class="w-48 bg-gray-200 sm:bg-red-200 md:w-60 md:bg-yellow-200 lg:bg-green-200 xl:bg-blue-200">
+  <nav id="drawerNav" class="w-48 bg-gray-200 sm:bg-red-200 md:w-60 md:bg-yellow-200 lg:bg-green-200 xl:bg-blue-200">
     <div class="inner">
       <ul>
         <li><a href="#">Text</a></li>
@@ -19,7 +19,7 @@
 
 <style>
   /* ドロワーメニュー */
-  nav {
+  #drawerNav {
     display: block;
     position: fixed;
     top: 0;
@@ -37,7 +37,7 @@
   }
 
   /* open nav */
-  .open nav {
+  .open #drawerNav {
     left: 0;
     opacity: 1;
   }

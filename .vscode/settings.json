@@ -1,6 +1,23 @@
 {
-	"editor.defaultFormatter": "HookyQR.beautify", // フォーマッターを設定
 	"editor.formatOnSave": true, //ファイル保存時に自動フォーマット
+	"ruby.format": "rufo", // rufoフォーマットを使う宣言
+	"solargraph.autoformat": true, // rufoで自動保存する
+	// jsファイルの設定
+	"[javascript]": {
+		"editor.defaultFormatter": "HookyQR.beautify"
+	},
+	// rbファイルの設定
+	"[ruby]": {},
+	// erbファイルの設定
+	"[erb]": {
+		"editor.defaultFormatter": "HookyQR.beautify",
+	},
+	// html.erbファイルの設定
+	"[html.erb]": {
+		"editor.suggest.insertMode": "replace",
+		"editor.defaultFormatter": "HookyQR.beautify"
+	},
+	// beautifyの設定
 	"beautify.language": {
 		"js": {
 			"type": [
@@ -26,6 +43,7 @@
 		"html.format.indentInnerHtml": true,
 		"html.format.wrapAttributes": "force"
 	},
+	// tailwindの設定
 	"tailwindCSS.experimental.classRegex": [
 		"tailwind\\(\"([^\")]*)"
 	],

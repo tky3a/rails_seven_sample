@@ -50,6 +50,7 @@ gem "rails-i18n"
 gem "redcarpet", "~> 2.3.0"  # マークダウン形式での表示
 gem "coderay"                # シンタックスハイライト対応
 gem "kaminari"
+gem "devise"
 
 # Use Sass to process CSS
 # gem "sassc-rails"

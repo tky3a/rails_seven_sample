@@ -1,1 +1,5 @@
 <%= render 'articles/articles_main_view', articles: @articles %>
+
+<div class="flex flex-1 items-center justify-center flex-row pb-4">
+  <%= paginate @articles %>
+</div>

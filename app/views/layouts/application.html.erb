@@ -12,8 +12,17 @@
   </head>
 
   <body class="min-h-full flex flex-col bg-stone-200">
-    <%# TODO: リンククリックしたあとにJSが動かなくなる %>
+    <%# ヘッダー %>
     <%= render 'shared/header' %>
+
+    <%# notice メッセージ %>
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice">
+        <%= notice %>
+      </p>
+    <% end %>
+
+    <%# メインの表示 %>
     <%= yield %>
   </body>
 

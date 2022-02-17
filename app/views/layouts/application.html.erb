@@ -11,9 +11,12 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="min-h-full flex flex-col bg-stone-200">
-    <%# ヘッダー %>
-    <%= render 'shared/header' %>
+  <body class="min-h-full flex flex-col bg-stone-200 h-screen">
+    <%# 認証とかユーザー画面では表示しない %>
+    <% unless request.path.include?("users") %>
+      <%# ヘッダー %>
+      <%= render 'shared/header' %>
+    <% end %>
 
     <%# notice メッセージ %>
     <% if notice.present? %>

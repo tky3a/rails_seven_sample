@@ -93,7 +93,8 @@ class ArticlesController < ApplicationController
       # 複数条件での検索(articleに紐づいたtag名と、articleのタイトルと内容に検索ワードが存在しているものを検索)
       @articles = Article.left_outer_joins(:tags)
         .where(["tags.name LIKE(?) OR title LIKE(?) OR text LIKE(?)", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%"])
-        .order(updated_at: :desc)
+        .page(params[:page])
+        .per(10).order(updated_at: :desc)
     end
   end
 

@@ -3,15 +3,19 @@ const drawerBtn = document.getElementById("drawerBtn")
 const mask = document.getElementById("mask")
 
 // ドロワーボタン押下イベント
-drawerBtn.addEventListener("click", () => {
-    if (nav.className !== "open") {
-        nav.classList.add("open")
-    } else {
-        nav.classList.remove("open")
-    }
-})
+if (drawerBtn) {
+    drawerBtn.addEventListener("click", () => {
+        if (nav.className !== "open") {
+            nav.classList.add("open")
+        } else {
+            nav.classList.remove("open")
+        }
+    })
+}
 
 // マスク押下イベント
-mask.addEventListener("click", () => {
-    nav.classList.remove("open")
-})
+if (mask) {
+    mask.addEventListener("click", () => {
+        nav.classList.remove("open")
+    })
+}

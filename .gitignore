@@ -4,6 +4,20 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+*.rbc
+capybara-*.html
+.rspec
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/db/*.sqlite3-[0-9]*
+/public/system
+/coverage/
+/spec/tmp
+*.orig
+rerun.txt
+pickle-email-*.html
+.DS_Store
+
 # Ignore bundler config.
 /.bundle
 
@@ -34,3 +48,8 @@
 !/app/assets/builds/.keep
 
 /node_modules
+
+# dotenv, dotenv-rails
+# TODO Comment out these rules if environment variables can be committed
+.env
+.env*.local

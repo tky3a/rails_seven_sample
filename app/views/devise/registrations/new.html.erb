@@ -1,0 +1,54 @@
+<div class="<%= auth_full_screen %>">
+  <div class="container">
+    <div class="flex justify-center">
+      <div class="<%= auth_main_contents_container %>">
+        <div class="<%= auth_main_contents %>">
+          <h2 class="text-2xl text-white">新規アカウント登録</h2>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "#{auth_form}"}, data: { turbo: false } ) do |f| %>
+            <%# deviseデフォルトのメッセージは使わず、自前のエラーメッセージを使う %>
+            <%# <%= render "devise/shared/error_messages", resource: resource %>
+
+            <%= render 'shared/error_messages', model_data: resource %>
+
+            <div class="<%= auth_input_area %>">
+              <%= f.text_field :uid, autofocus: false, autocomplete: "uid", class: "#{auth_input}", placeholder: "uid" %>
+            </div>
+
+            <div class="<%= auth_input_area %>">
+              <%= f.text_field :name, autofocus: false, autocomplete: "name", class: "#{auth_input}", placeholder: "name" %>
+            </div>
+
+            <div class="<%= auth_input_area %>">
+              <%= f.email_field :email, autofocus: false, autocomplete: "email", class: "#{auth_input}", placeholder: "email" %>
+            </div>
+
+            <div class="<%= auth_input_area %>">
+              <div>
+                <%# <% if @minimum_password_length %>
+                <%# <em class="text-white">(<%= @minimum_password_length %>
+                <%# characters minimum)</em> %>
+                <%# <% end %>
+              </div>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "password", class: "#{auth_input}" %>
+            </div>
+
+            <div class="<%= auth_input_area %>">
+              <%# <%= f.label :password_confirmation, class: "text-white flex-wrap" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password confirm", class: "#{auth_input}" %>
+            </div>
+
+            <div class="flex actions py-4 justify-center">
+              <div class="items-center  border border-white">
+                <%= f.submit "Sign up", class: "#{auth_submit}" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-white">
+    <%# メールで仮登録？ オプションによってリンク変わる？ %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

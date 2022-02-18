@@ -1,0 +1,39 @@
+<div class="<%= auth_full_screen %>">
+  <div class="container">
+    <div class="flex justify-center">
+      <div class="<%= auth_main_contents_container %>">
+        <div class="<%= auth_main_contents %>">
+          <h2 class="text-2xl text-white">ログイン</h2>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "#{auth_form}"}, data: { turbo: false }) do |f| %>
+
+            <div class="<%= auth_input_area %>">
+              <%= f.email_field :email, autofocus: false, class: "#{auth_input}", placeholder: "email", autocomplete: "email" %>
+            </div>
+
+            <div class="<%= auth_input_area %>">
+              <%= f.password_field :password, class: "#{auth_input}", placeholder: "password", autocomplete: "current-password" %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="<%= auth_input_area %>">
+                <%= f.check_box :remember_me, checked: true %>
+                <%= f.label :remember_me, class: "text-gray-400" %>
+              </div>
+            <% end %>
+
+            <div class="flex actions py-4 justify-center">
+              <div class="items-center  border border-white">
+                <%= f.submit "ログイン", class: "#{auth_submit}" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-gray-400">
+    <%= render "devise/shared/links", tw_class: "hover:text-white" %>
+  </div>
+
+</div>

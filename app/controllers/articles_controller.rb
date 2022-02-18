@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+  #　Articleコントローラーはauthenticate_user!を無効化する
+  skip_before_action :authenticate_user!
+
   def index
     # includesで関連付けられているモデルをあらかじめ取得(パフォーマンスチューニング)
     # left join
@@ -17,13 +20,16 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    unless user_signed_in?
+      redirect_to new_user_session_path, notice: "ログインしてください。", turbo: false
+    end
     # 作成したArticleTagクラスのインスタンスを作成(FormObjectのクラスを参照)
     @article = ArticleTag.new
   end
 
   def create
-    # TODO: ユーザーはセッションから取得できるように修正する
-    user = User.find(1)
+    # diviseのメソッドでセッションから取得
+    user = current_user
     # 作成したArticleTagクラスのインスタンスを作成
     @article = ArticleTag.new(params: article_tag_params)
     # トランザクション処理
@@ -56,7 +62,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    # TODO: ユーザーはセッションから取得できるように修正する
     user = User.find_by(uid: params[:uid])
     current_article = Article.includes(:tags).find(params[:id])
 
@@ -93,7 +98,8 @@ class ArticlesController < ApplicationController
       # 複数条件での検索(articleに紐づいたtag名と、articleのタイトルと内容に検索ワードが存在しているものを検索)
       @articles = Article.left_outer_joins(:tags)
         .where(["tags.name LIKE(?) OR title LIKE(?) OR text LIKE(?)", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%"])
-        .order(updated_at: :desc)
+        .page(params[:page])
+        .per(10).order(updated_at: :desc)
     end
   end
 

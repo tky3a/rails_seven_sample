@@ -14,12 +14,16 @@
           <%# 画面サイズがmd以上になったら表示 %>
           <div class="search-form-area hidden md:block md:w-72 md:px-2">
             <%= form_with(url: search_articles_path, local: true, method: :get, data: { turbo: false }, class: "search-form flex flex-1") do |form| %>
-            <%= form.text_field :keyword, placeholder: "投稿を検索する", value: @search_word, class: "search-input px-1 flex-1 h-10" %>
-            <%= form.submit "検索", class: "flex-none border bg-sky-500 hover:bg-sky-500/75 px-2 rounded-md hidden" %>
+              <%= form.text_field :keyword, placeholder: "投稿を検索する", value: @search_word, class: "search-input px-1 flex-1 h-10" %>
+              <%= form.submit "検索", class: "flex-none border bg-sky-500 hover:bg-sky-500/75 px-2 rounded-md hidden" %>
             <% end %>
           </div>
           <div class="flex items-center justify-center">
-            <p class="text-gray-400 hover:text-gray-200">マイページ</p>
+            <% if user_signed_in? %>
+              <p class="text-gray-400 hover:text-gray-200">マイページ</p>
+            <% else %>
+              <p class="text-gray-400 hover:text-gray-200">ログイン</p>
+            <% end %>
             <%= button_to "投稿", { controller: "articles", action: "new" }, { method: :get, data: { turbo: false }, class: "text-gray-400 pl-2 hover:text-gray-200" } %>
           </div>
         </div>
@@ -27,8 +31,8 @@
       <%# 画面サイズがmd以下になったら表示 %>
       <div class="md:hidden pt-2">
         <%= form_with(url: search_articles_path, local: true, method: :get, data: { turbo: false }, class: "search-form flex flex-1") do |form| %>
-        <%= form.text_field :keyword, placeholder: "投稿を検索する", value: @search_word, class: "search-input px-1 flex-1 h-10" %>
-        <%= form.submit "検索", class: "flex-none border bg-sky-500 hover:bg-sky-500/75 px-2 rounded-md hidden" %>
+          <%= form.text_field :keyword, placeholder: "投稿を検索する", value: @search_word, class: "search-input px-1 flex-1 h-10" %>
+          <%= form.submit "検索", class: "flex-none border bg-sky-500 hover:bg-sky-500/75 px-2 rounded-md hidden" %>
         <% end %>
       </div>
     </div>

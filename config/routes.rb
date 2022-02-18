@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   # これで認証系のルーティングが作成される
   devise_for :users
+  devise_scope :user do
+    get "/users/new", to: "devise/registrations#new"
+    get "/users/sign_out" => "devise/sessions#destroy"
+  end
 
   root to: "articles#index"
   resources :articles, only: [:index, :new, :create] do
@@ -17,7 +21,7 @@ Rails.application.routes.draw do
   get "/:uid/articles/:id", to: "articles#show", as: :article
   get "/:uid/articles/edit/:id", to: "articles#edit", as: :edit_article
   patch "/:uid/articles/edit/:id", to: "articles#update", as: :update_article
-  resources :users
+  # resources :users
   # --------------
   # resources :users, only: [:index, :show, :new, :create] do
   #   resources :articles, only: [:show]

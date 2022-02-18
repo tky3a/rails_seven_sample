@@ -15,6 +15,10 @@
             </div>
 
             <div class="<%= auth_input_area %>">
+              <%= f.text_field :name, autofocus: false, autocomplete: "name", class: "#{auth_input}", placeholder: "name" %>
+            </div>
+
+            <div class="<%= auth_input_area %>">
               <%= f.email_field :email, autofocus: false, autocomplete: "email", class: "#{auth_input}", placeholder: "email" %>
             </div>
 
@@ -44,7 +48,7 @@
     </div>
   </div>
   <div class="text-white">
-    <%# メールで仮登録？ %>
+    <%# メールで仮登録？ オプションによってリンク変わる？ %>
     <%= render "devise/shared/links" %>
   </div>
 </div>

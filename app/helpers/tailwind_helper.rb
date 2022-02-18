@@ -4,7 +4,7 @@ module TailwindHelper
   end
 
   def auth_input
-    "px-1 bg-transparent border-b focus:bg-white focus:outline-none focus:duration-700 w-full"
+    "px-1 bg-transparent border-b placeholder-gray-400 text-white focus:text-black focus:bg-white focus:outline-none focus:duration-700 w-full"
   end
 
   def auth_submit

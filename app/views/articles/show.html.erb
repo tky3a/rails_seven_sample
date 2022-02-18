@@ -4,7 +4,9 @@
       <p class="text-right">
         <%= @article.user.uid%>
       </p>
-      <%= link_to "編集", edit_article_path, data: {turbo: false}, class: "flex-1 text-right" %>
+      <% if current_user && @article.user.uid == current_user.uid %>
+        <%= link_to "編集", edit_article_path, data: {turbo: false}, class: "flex-1 text-right" %>
+      <% end %>
 
     </div>
     <p>

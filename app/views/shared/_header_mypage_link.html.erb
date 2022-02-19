@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+  <%= link_to "マイページ", { controller: 'users', action: 'show', uid: current_user.uid }, data: { turbo: false }, class: "text-gray-400 hover:text-gray-200" %>
+<% else %>
+  <%= link_to "ログイン", user_session_path, data: { turbo: false }, class: "text-gray-400 hover:text-gray-200" %>
+<% end %>

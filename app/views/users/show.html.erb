@@ -1,2 +1,20 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="w-screen h-screen flex justify-center">
+  <div class="container flex flex-col md:flex-row">
+    <div class="pt-4 md:py-4 px-4 md:px-0 md:w-96">
+      <div class="flex flex-col bg-white h-full">
+        <h1>
+          <%= current_user.name %>
+        </h1>
+        <h1>
+          <%= current_user.uid %>
+        </h1>
+      </div>
+    </div>
+    <div class="md:flex md:flex-col">
+      <h1 class="md:px-4 md:pt-4">
+        投稿した記事
+      </h1>
+      <%= render 'articles/articles_main_view', articles: current_user.articles %>
+    </div>
+  </div>
+</div>

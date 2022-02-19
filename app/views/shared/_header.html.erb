@@ -19,11 +19,8 @@
             <% end %>
           </div>
           <div class="flex items-center justify-center">
-            <% if user_signed_in? %>
-              <p class="text-gray-400 hover:text-gray-200">マイページ</p>
-            <% else %>
-              <p class="text-gray-400 hover:text-gray-200">ログイン</p>
-            <% end %>
+            <%# マイページorログインリンク %>
+            <%= render "shared/header_mypage_link"%>
             <%= button_to "投稿", { controller: "articles", action: "new" }, { method: :get, data: { turbo: false }, class: "text-gray-400 pl-2 hover:text-gray-200" } %>
           </div>
         </div>
